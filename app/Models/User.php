@@ -22,7 +22,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'instagram',
     ];
+
+    public function ownedSpaces()
+    {
+        return $this->hasMany(Space::class, 'owner_id');
+    }
+
+    public function presence()
+    {
+        return $this->hasOne(UserPresence::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
